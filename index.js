@@ -25,7 +25,7 @@ RuntimePublicPath.prototype.apply = function (compiler) {
 
     if (compiler.hooks && compiler.hooks.thisCompilation) {
         compiler.hooks.thisCompilation.tap(this._name, function (compilation) {
-            compilation.mainTemplate.plugin('require-extensions', function (source, chunk, hash) {
+            compilation.mainTemplate.hooks.requireExtensions.tap('require-extensions', function (source, chunk, hash) {
                 return buf(runtimePublicPathStr, source)
             });
         });
